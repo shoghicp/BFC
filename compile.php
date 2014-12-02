@@ -36,7 +36,8 @@ function printOperation($out, $op, $extra = null){
 	fwrite($out, getOpName($op) . ($extra !== null ? " ". $extra : "") . "\n");
 }
 
-while(!feof($input) and ($char = fgetc($input))){
+while(!feof($input)){
+	$char = fgetc($input);
 	if(
 		$char !== "["
 		and $char !== "]"

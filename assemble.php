@@ -47,17 +47,18 @@ while(!feof($input)){
 
 			case OP_MOV:
 				if($op[1] < 0){
-					fwrite($output, '$currentMemory =& $memory[$memoryAddress -= '. -$op[1] .'];' . PHP_EOL);
+					fwrite($output, '$memoryAddress -= '. -$op[1] .';' . PHP_EOL);
 				}else{
-					fwrite($output, '$currentMemory =& $memory[$memoryAddress += '. $op[1] .'];' . PHP_EOL);
+					fwrite($output, '$memoryAddress += '. $op[1] .';' . PHP_EOL);
 				}
+				fwrite($output, '$currentMemory =& $memory[$memoryAddress];' . PHP_EOL);
 				break;
 
 			case OP_JZ:
-				fwrite($output, 'while($currentMemory !== 0){' . PHP_EOL);
+				fwrite($output, 'while($currentMemory != 0){' . PHP_EOL);
 				break;
 			case OP_JNZ:
-				fwrite($output, 'if($currentMemory === 0){' . PHP_EOL);
+				fwrite($output, 'if($currentMemory == 0){' . PHP_EOL);
 				fwrite($output, 'break;' . PHP_EOL);
 				fwrite($output, '}' . PHP_EOL);
 				fwrite($output, '}' . PHP_EOL);
