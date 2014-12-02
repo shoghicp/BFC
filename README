@@ -1,0 +1,1 @@
+Usage: php compile.php INPUT.bf - | php assemble.php - OUTPUT.php
